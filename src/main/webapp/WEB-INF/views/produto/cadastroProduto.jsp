@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +8,7 @@
 </head>
 <body>
 	<h1>Cadastro de Produtos</h1>
-	
-<!-- 	<c:if test="${statusCadastro==1}"></c:if>  -->
-	    
-	    <script type="text/javascript">
-			swal("Sucesso!", "Registro cadastrado com sucesso!", "success");
-		</script>
 
-	 
-	
-	
-	
 	<form action="produtos/form" method="post">
 		<div>
 			<label>Título</label> <input type="text" name="titulo" />
