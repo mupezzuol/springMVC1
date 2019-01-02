@@ -2,12 +2,18 @@ package com.springMVC.conf;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
+@EnableTransactionManagement //Deixo habilitado para ser utilizado o Spring Transaction
 public class JPAConfiguration {
 	
 	@Bean
@@ -32,9 +38,15 @@ public class JPAConfiguration {
 
         factoryBean.setJpaProperties(props);//Seto as propriedados do factory atraves da classe Properties
 
-        factoryBean.setPackagesToScan("br.com.springMVC.model");//Pacote que será escaniado os repositorios
+        factoryBean.setPackagesToScan("com.springMVC.model");//Pacote que será escaniado os repositorios
 
         return factoryBean;
+    }
+	
+	//Método para gerenciar nossa transação atraves do nosso EntityManager
+	@Bean
+    public JpaTransactionManager transactionManager(EntityManagerFactory emf){
+        return new JpaTransactionManager(emf);
     }
 	
 }

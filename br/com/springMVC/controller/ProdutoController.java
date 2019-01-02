@@ -20,17 +20,11 @@ public class ProdutoController  {
 	
 	//Os parametros recebido pelo metodo precisa ser o mesmo nome dos inputs do formulado da propriedade 'name'
 	//Esse processo se chama BINDING (funciona com parametro normal e até mesmo um objeto)
-	@RequestMapping("/produtos/form")
-	public String form(Produto produto) {
-		System.out.println(produto);
-		return "produtos/ok";
-	}
-	
-	@RequestMapping("/produtos/grava")
+	@RequestMapping("/produtos/gravar")
 	public String grava(Produto produto) {
 		System.out.println(produto);
 		produtoDAO.gravar(produto);
-		return "produtos/ok";
+		return "produto/ok";
 	}
 
 }

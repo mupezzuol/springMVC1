@@ -11,9 +11,10 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	
 	//Método que procura a classe de configuração dos Controllers do Spring
 	//Nesse caso retornamos a classe onde constam essas configurações
+	//Colocamos classes de configurações da JPA também
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {AppWebConfiguration.class};
+		return new Class[] {AppWebConfiguration.class, JPAConfiguration.class};
 	}
 	
 	//Método de configuração do mapeando que eu quero que o Spring gerencie

@@ -4,10 +4,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.springMVC.model.Produto;
 
 @Repository
+@Transactional //Irá cuidar da transação do Spring
 public class ProdutoDAO {
 	
 	@PersistenceContext
