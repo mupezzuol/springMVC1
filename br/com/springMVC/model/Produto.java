@@ -1,5 +1,8 @@
 package com.springMVC.model;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,29 +18,55 @@ public class Produto {
 	private String descricao;
 	private int paginas;
 	
+	@ElementCollection //indica que este atributo é uma coleção de elementos:
+	private List<Preco> precos;
+	
 	@Override
 	public String toString() {
-		return "Produto [titulo=" + titulo + ", descricao=" + descricao + ", paginas=" + paginas + "]";
+		return "Produto [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", paginas=" + paginas
+				+ ", precos=" + precos + "]";
 	}
-	
+
 	//Getter's and Setter's
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
 	public int getPaginas() {
 		return paginas;
 	}
+
 	public void setPaginas(int paginas) {
 		this.paginas = paginas;
 	}
-	
+
+	public List<Preco> getPrecos() {
+		return precos;
+	}
+
+	public void setPrecos(List<Preco> precos) {
+		this.precos = precos;
+	}
+
 }
