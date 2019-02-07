@@ -10,7 +10,7 @@
 <body>
 	<h1>Cadastro de Produtos</h1>
 
-	<form action="produtos/gravar" method="post">
+	<form action="gravar" method="post">
 		<div>
 			<label>Título</label> <input type="text" name="titulo" />
 		</div>
