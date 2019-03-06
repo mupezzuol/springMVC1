@@ -20,7 +20,7 @@ import com.springMVC.model.enums.TipoPreco;
 import com.springMVC.validation.ProdutoValidation;
 
 @Controller
-@RequestMapping("produtos") //Endereço DEFAULT antes de todos abaixo
+@RequestMapping("/produtos") //Endereço DEFAULT antes de todos abaixo
 public class ProdutoController  {
 	
 	@Autowired
@@ -37,7 +37,7 @@ public class ProdutoController  {
 	//@Valid mostra que ele estará de acordo para validação
 	//result é após validação ele recolhe o resultado do Bind do @Valid...
 	@RequestMapping(value="/gravar", method=RequestMethod.POST)
-	public ModelAndView grava(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
+	public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 		
 		//Se o result, que recolheu os erros, tiver tido erro, ele retorna para a página de cadastro
 		if(result.hasErrors()){
