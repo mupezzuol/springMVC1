@@ -41,7 +41,7 @@ public class ProdutoController  {
 		
 		//Se o result, que recolheu os erros, tiver tido erro, ele retorna para a página de cadastro
 		if(result.hasErrors()){
-	        return homeProduto();
+	        return homeProduto(produto);
 	    }
 		
 		produtoDAO.gravar(produto);
@@ -60,7 +60,7 @@ public class ProdutoController  {
 	
 	
 	@RequestMapping(value="/CadProdutos", method=RequestMethod.GET)
-	public ModelAndView homeProduto() {
+	public ModelAndView homeProduto(Produto produto) {
 		ModelAndView mv = new ModelAndView("produto/cadastroProduto");//Do MODEL para a VIEW
 		mv.addObject("tipos", TipoPreco.values());
 		return mv;

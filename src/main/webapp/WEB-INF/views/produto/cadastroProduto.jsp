@@ -17,25 +17,33 @@
 	<!-- mvUrl chamo o PC(Produto Controller) + o nome do método, então a URL não importa mais -->
 	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" modelAttribute="produto">
 		<div>
-			<label>Título</label> <input type="text" name="titulo" />
+			<label>Título</label> 
+			<form:input path="titulo"/>
 			<!-- Mensagem de Erro -> produto.titulo é o objeto que está sendo tratado com os seus erros -->
 			<form:errors path="titulo"/>
 		</div>
 		<div>
 			<label>Descrição</label>
-			<textarea rows="10" cols="20" name="descricao"></textarea>
+			<form:textarea path="descricao" rows="10" cols="20"/>
 			<form:errors path="descricao"/>
 		</div>
 		<div>
-			<label>Páginas</label> <input type="text" name="paginas" />
+			<label>Páginas</label> 
+			<form:input path="paginas"/>
 			<form:errors path="paginas"/>
+		</div>
+		
+		<div>
+		    <label>Data de Lançamento</label>
+		    <form:input path="dataLancamento"/>
+		    <form:errors path="dataLancamento" /> <!-- Gera erro TypeMissmatch caso de erro de conversão -->
 		</div>
 
 		<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
 			<div>
 				<label>${tipoPreco}</label> 
-				<input type="text" name="precos[${status.index}].valor"/>
-				<input type="hidden" name="precos[${status.index}].tipo" value="${tipoPreco}"/>
+				<form:input path="precos[${status.index}].valor"/>
+				<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}"/>
 			</div>
 		</c:forEach>
 		

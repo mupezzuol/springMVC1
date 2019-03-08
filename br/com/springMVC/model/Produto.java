@@ -1,5 +1,6 @@
 package com.springMVC.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Produto {
@@ -17,6 +20,9 @@ public class Produto {
 	private String titulo;
 	private String descricao;
 	private int paginas;
+	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	private LocalDate dataLancamento;
 	
 	@ElementCollection //indica que este atributo é uma coleção de elementos:
 	private List<Preco> precos;
@@ -59,6 +65,14 @@ public class Produto {
 
 	public void setPaginas(int paginas) {
 		this.paginas = paginas;
+	}
+
+	public LocalDate getDataLancamento() {
+		return dataLancamento;
+	}
+
+	public void setDataLancamento(LocalDate dataLancamento) {
+		this.dataLancamento = dataLancamento;
 	}
 
 	public List<Preco> getPrecos() {
