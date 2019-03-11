@@ -27,6 +27,8 @@ public class Produto {
 	@ElementCollection //indica que este atributo é uma coleção de elementos:
 	private List<Preco> precos;
 	
+	private String sumarioPath;
+	
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", paginas=" + paginas
@@ -81,6 +83,14 @@ public class Produto {
 
 	public void setPrecos(List<Preco> precos) {
 		this.precos = precos;
+	}
+
+	public String getSumarioPath() {
+		return sumarioPath;
+	}
+
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
 	}
 
 }

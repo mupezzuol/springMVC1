@@ -15,7 +15,7 @@
 	<!-- Form do Srping, uso para facilitar as validações -->
 	<!-- commandName/modelAttribute eu digo que tudo que for validado diz respeito ao objeto Produto -->
 	<!-- mvUrl chamo o PC(Produto Controller) + o nome do método, então a URL não importa mais -->
-	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" modelAttribute="produto">
+	<form:form action="${s:mvcUrl('PC#gravar').build()}" method="post" modelAttribute="produto" enctype="multipart/form-data">
 		<div>
 			<label>Título</label> 
 			<form:input path="titulo"/>
@@ -46,6 +46,11 @@
 				<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}"/>
 			</div>
 		</c:forEach>
+		
+		<div>
+		    <label>Sumário</label>
+		    <input name="sumario" type="file" />
+		</div>
 		
 		<button type="submit">Cadastrar</button>
 	</form:form>

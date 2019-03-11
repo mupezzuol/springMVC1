@@ -8,14 +8,17 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.springMVC.DAO.ProdutoDAO;
 import com.springMVC.controller.HomeController;
+import com.springMVC.infra.FileSaver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class})
+@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class})
 public class AppWebConfiguration {
 	
 	
@@ -48,6 +51,15 @@ public class AppWebConfiguration {
 
 	    return conversionService;
 	}
+	
+	@Bean //Método para configurar envio de arquivos, multiplos arquivos etc...
+	public MultipartResolver multipartResolver(){
+		return new StandardServletMultipartResolver();
+    }
+	
+	
+	
+	
 	
 	
 	
