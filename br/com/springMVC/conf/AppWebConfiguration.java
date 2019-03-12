@@ -10,17 +10,26 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.springMVC.DAO.ProdutoDAO;
 import com.springMVC.controller.HomeController;
 import com.springMVC.infra.FileSaver;
 
+//Para a IDE tirar o erro.. Usando 'deprecation' é qnd usamos uma classe antiga que foi substituido etc...
+@SuppressWarnings("deprecation")
 @EnableWebMvc
 @ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class})
-public class AppWebConfiguration {
+public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	
+	
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	    configurer.enable();
+	}
 	
 	//O retorno seja gerenciado pelo Spring, dessa forma temos que colocar como Beans
 	@Bean
