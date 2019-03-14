@@ -18,11 +18,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.springMVC.DAO.ProdutoDAO;
 import com.springMVC.controller.HomeController;
 import com.springMVC.infra.FileSaver;
+import com.springMVC.model.CarrinhoCompras;
 
 //Para a IDE tirar o erro.. Usando 'deprecation' é qnd usamos uma classe antiga que foi substituido etc...
 @SuppressWarnings("deprecation")
 @EnableWebMvc
-@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class})
+@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	
 	
@@ -37,6 +38,14 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver(); 
 		resolver.setPrefix("/WEB-INF/views/");//Tudo que vem primeiro, o PREFIXO
 		resolver.setSuffix(".jsp");//Tudo que vem por último, o nosso SUFIXO
+		
+		
+		//Atributos Gerais
+		//resolver.setExposeContextBeansAsAttributes(true); //TODOS OS ATRIBUTOS FICARÃO DISPONIVEIS NAS PÁGINAS
+		
+		//Habilitando atributo das classe individualmente.. Nome da classe com inicial minuscula
+		resolver.setExposedContextBeanNames("carrinhoCompras");
+		
 		return resolver;
 	}
 	
