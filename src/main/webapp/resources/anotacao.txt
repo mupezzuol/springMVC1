@@ -1,0 +1,19 @@
+@Component  -> É um Bean do Spring, para ele gerenciar para nós.
+
+
+
+## ESCOPO DA APLICAÇÃO
+
+@Scope(value=WebApplicationContext.SCOPE_SESSION)
+Para cada usuário que acessar, será um sessão diferente. Coloquei no carrinho pois é a contagem de itens no carrinho,
+para cada usuário será uma sessão diferente, pois serão pessoas diferentes acessando a mesma tela/aplicação.
+
+
+@Scope(value=WebApplicationContext.SCOPE_REQUEST)
+Para casa REQUISIÇÃO do navegador, ele fará uma sessão diferente.
+
+OBS: O escopo default é escopo de aplicação.. (SCOPE_APPLICATION)
+
+
+
+

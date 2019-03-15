@@ -3,9 +3,12 @@ package com.springMVC.model;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 @Component
+@Scope(value=WebApplicationContext.SCOPE_SESSION)//Para cada usuário que acessar, será um sessão diferente. Preciso sempre configurar a Controller que chama essa classe
 public class CarrinhoCompras {
 	
 	//Usamos MAP de CarrinhoItem e Integer
@@ -31,7 +34,7 @@ public class CarrinhoCompras {
 	}
 	
 	//Publico, será usado no getQuantidade do Spring da página na hora de pegar via JSTL
-	//Usando Lampda
+	//Usando Lampda.. Reduce usado como se fosse um contador
 	public int getQuantidade() {
 		return itens.values().stream().reduce(0, 
 				(proximo, acumulador) -> proximo + acumulador);
