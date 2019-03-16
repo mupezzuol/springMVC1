@@ -1,5 +1,6 @@
 package com.springMVC.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.springMVC.model.enums.TipoPreco;
 
 @Entity
 public class Produto {
@@ -34,6 +37,13 @@ public class Produto {
 		return "Produto [id=" + id + ", titulo=" + titulo + ", descricao=" + descricao + ", paginas=" + paginas
 				+ ", precos=" + precos + "]";
 	}
+	
+	//Usando Lampda para retornar o PREÇO de acordo com o tipo do item.
+	public BigDecimal precoPara(TipoPreco tipoPreco) {
+		return precos.stream().filter(preco -> preco.getTipo().equals(tipoPreco))
+				.findFirst().get().getValor(); //Pega o primeiro retorno como verdade e retorna como inteiro...
+	}
+	
 
 	//Getter's and Setter's
 	

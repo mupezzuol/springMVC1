@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,12 +27,17 @@ public class CarrinhoComprasController {
 	
 	@RequestMapping("/add")
 	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco) {
-		ModelAndView mv = new ModelAndView("redirect:/produtos");//Para tela de produtos
+		ModelAndView mv = new ModelAndView("redirect:/carrinho");//Para tela de produtos
 		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);
 		
 		carrinhoCompras.add(carrinhoItem);
-		
 		return mv;
+	}
+	
+	//Quando ele acessar URL padrão '/carrinho' e for do tipo GET, ele entra nesse método
+	@RequestMapping(method=RequestMethod.GET)
+	public ModelAndView itens() {
+		return new ModelAndView("/carrinho/itens");
 	}
 	
 	//Private, só a classe acessa ou herança
@@ -40,8 +46,5 @@ public class CarrinhoComprasController {
 		CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);//Crio um novo carrinho
 		return carrinhoItem;
 	}
-	
-	
-	
 	
 }

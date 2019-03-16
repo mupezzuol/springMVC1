@@ -1,5 +1,9 @@
 package com.springMVC.model;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -9,7 +13,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Component
 @Scope(value=WebApplicationContext.SCOPE_SESSION)//Para cada usuário que acessar, será um sessão diferente. Preciso sempre configurar a Controller que chama essa classe
-public class CarrinhoCompras {
+public class CarrinhoCompras implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	//Usamos MAP de CarrinhoItem e Integer
 	//LinkedHashMap é usado junto com hashCode e Equals, para varrer exatamente os itens corretos
@@ -25,7 +31,7 @@ public class CarrinhoCompras {
 	
 	
 	//Atenção nesse método de validação de itens no carrinho
-	private int getQuantidade(CarrinhoItem item) {
+	public Integer getQuantidade(CarrinhoItem item) {
 		if (!itens.containsKey(item)) {
 			itens.put(item, 0);
 		}
@@ -39,5 +45,27 @@ public class CarrinhoCompras {
 		return itens.values().stream().reduce(0, 
 				(proximo, acumulador) -> proximo + acumulador);
 	}
+	
+	//Uso para pegar os itens do carrinho etc...
+	public Collection<CarrinhoItem> getItens() {
+		return itens.keySet();
+	}
+	
+	//Total de acordo com CADA item
+	public BigDecimal getTotal(CarrinhoItem item) {
+		return item.getTotal(getQuantidade(item));
+	}
+	
+	//Total do carrinho todo
+	//itens.keySet() pega os valores de cada item que temos etc...
+	public BigDecimal getTotal() {
+		BigDecimal total = BigDecimal.ZERO;
+		for (CarrinhoItem item : itens.keySet()) {
+			total = total.add(getTotal(item));
+		}
+		return total;
+	}
+	
+	
 
 }

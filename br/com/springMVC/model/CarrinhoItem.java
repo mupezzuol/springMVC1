@@ -1,5 +1,7 @@
 package com.springMVC.model;
 
+import java.math.BigDecimal;
+
 import com.springMVC.model.enums.TipoPreco;
 
 public class CarrinhoItem {
@@ -11,6 +13,16 @@ public class CarrinhoItem {
 		super();
 		this.produto = produto;
 		this.tipoPreco = tipoPreco;
+	}
+	
+	// Verifico o preco de acordo com o tipo
+	public BigDecimal getPreco() {
+		return produto.precoPara(tipoPreco);
+	}
+	
+	//Retorno a quantidade total atraves de multiply, onde nós multiplacamos o valor pela quantidade daquele item daquele tipo
+	public BigDecimal getTotal(int quantidade) {
+		return this.getPreco().multiply(new BigDecimal(quantidade));
 	}
 	
 	public Produto getProduto() {
@@ -25,7 +37,6 @@ public class CarrinhoItem {
 	public void setTipoPreco(TipoPreco tipoPreco) {
 		this.tipoPreco = tipoPreco;
 	}
-	
 	
 	//Implementamos hashCode e equals para não deixar adc itens no carrinho que sejam iguais
 	@Override

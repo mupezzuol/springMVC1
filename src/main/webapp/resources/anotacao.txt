@@ -8,6 +8,9 @@
 Para cada usuário que acessar, será um sessão diferente. Coloquei no carrinho pois é a contagem de itens no carrinho,
 para cada usuário será uma sessão diferente, pois serão pessoas diferentes acessando a mesma tela/aplicação.
 
+OBS: Qnd for usar Session, é bom sempre implementar 'implements Serializable', pois cada sessão que ele abre, ele guarda em um
+outro objeto.
+
 
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
 Para casa REQUISIÇÃO do navegador, ele fará uma sessão diferente.
