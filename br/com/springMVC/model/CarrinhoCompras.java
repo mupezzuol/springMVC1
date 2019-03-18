@@ -8,11 +8,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.springMVC.model.enums.TipoPreco;
+
 @Component
-@Scope(value=WebApplicationContext.SCOPE_SESSION)//Para cada usuário que acessar, será um sessão diferente. Preciso sempre configurar a Controller que chama essa classe
+@Scope(value=WebApplicationContext.SCOPE_SESSION,//Para cada usuário que acessar, será um sessão diferente. Preciso sempre configurar a Controller que chama essa classe
+		proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class CarrinhoCompras implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -64,6 +68,13 @@ public class CarrinhoCompras implements Serializable{
 			total = total.add(getTotal(item));
 		}
 		return total;
+	}
+
+
+	public void remover(Integer produtoId, TipoPreco tipoPreco) {
+		Produto produto = new Produto();
+		produto.setId(produtoId);//Crio produto com esse ID recebido
+		itens.remove(new CarrinhoItem(produto, tipoPreco));//Removo através da KEY, que é do ID recolhido. Removo da lista
 	}
 	
 	
