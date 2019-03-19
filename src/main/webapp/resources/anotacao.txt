@@ -20,3 +20,4 @@ OBS: O escopo default é escopo de aplicação.. (SCOPE_APPLICATION)
 
 
 
+restTemplate -> Tem a responsabilidade requisicao POST, GET etc.. operação atraves de REST.

@@ -11,6 +11,7 @@
 
 	<a href='<c:url value="produtos/CadProdutos"/>'>Cadastre novos Produtos</a> <!-- Link com Spring usamos a taglib -->
 	${sucesso}
+	${falha}
 	<table>
 		<tr>
 			<td>Título</td>
