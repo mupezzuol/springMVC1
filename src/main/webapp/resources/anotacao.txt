@@ -18,6 +18,12 @@ Para casa REQUISIÇÃO do navegador, ele fará uma sessão diferente.
 OBS: O escopo default é escopo de aplicação.. (SCOPE_APPLICATION)
 
 
-
-
 restTemplate -> Tem a responsabilidade requisicao POST, GET etc.. operação atraves de REST.
+
+
+
+Callable<ModelAndView> -> Classe anonima, para que o Spring entenda que suas requisicoes sejam ASSINCRONA,
+Para sua chamada precisa implementar essa chamada pois é uma classe anonima
+return () -> {
+	//CÓDIGO AQUI
+};
